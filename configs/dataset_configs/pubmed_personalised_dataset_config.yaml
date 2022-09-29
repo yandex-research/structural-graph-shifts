@@ -1,0 +1,7 @@
+dataset_name: pubmed
+num_classes: 3
+num_features: 500
+prepare_config:
+process_config:
+split_config:
+  type: personalised
