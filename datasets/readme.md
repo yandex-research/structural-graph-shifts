@@ -1,4 +1,4 @@
-# Graph datasets & data splits
+# Graph Datasets & Data Splits
 
 The homogenous graph information is stored in `.mat` files using the following dict structure: 
 - `'features'`: `scipy.sparse.coo_matrix` or `np.ndarray` of shape `(num_nodes, num_features)`
