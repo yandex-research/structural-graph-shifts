@@ -6,7 +6,7 @@ This repository provides an official implementation of experimental framework fo
 
 ## Installation
 
-This code works perfectly with the packages listed in `fantasy_environment.yaml`. You can create a separate conda environment with these dependecies by running the following command in the root directory of this project:
+This code works perfectly with the packages listed in `environment.yaml`. You can create a separate conda environment with these dependecies by running the following command in the root directory of this project:
 ```
 conda env create -f environment.yaml
 ```
