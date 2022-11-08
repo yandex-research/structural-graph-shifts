@@ -1,4 +1,4 @@
-gpu_index: 3
+gpu_index: 2
 
 num_epochs: 200
 log_frequency: 10

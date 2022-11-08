@@ -10,9 +10,11 @@ from .natural_posterior_network_model import NaturalPosteriorNetworkModel
 from .graph_posterior_network_model import GraphPosteriorNetworkModel
 from .natural_graph_posterior_network_model import NaturalGraphPosteriorNetworkModel
 
-from .compatible_posterior_network_model import CompatiblePosteriorNetworkModel
-from .natural_compatible_posterior_network_model import NaturalCompatiblePosteriorNetworkModel
+# from .compatible_posterior_network_model import CompatiblePosteriorNetworkModel
+# from .natural_compatible_posterior_network_model import NaturalCompatiblePosteriorNetworkModel
 
+# from .supreme_posterior_network_model import SupremePosteriorNetworkModel
+# from .natural_supreme_posterior_network_model import NaturalSupremePosteriorNetworkModel
 
 model_name_to_class = {
     'default_message_passing_network': DefaultMessagePassingNetworkModel,
@@ -27,7 +29,10 @@ model_name_to_class = {
     'natural_posterior_network': NaturalPosteriorNetworkModel,
     'natural_graph_posterior_network': NaturalGraphPosteriorNetworkModel,
     
-    'compatible_posterior_network': CompatiblePosteriorNetworkModel,
-    'natural_compatible_posterior_network': NaturalCompatiblePosteriorNetworkModel,
+    # 'compatible_posterior_network': CompatiblePosteriorNetworkModel,
+    # 'natural_compatible_posterior_network': NaturalCompatiblePosteriorNetworkModel,
+
+    # 'supreme_posterior_network': SupremePosteriorNetworkModel,
+    # 'natural_supreme_posterior_network': NaturalSupremePosteriorNetworkModel,
     # '': None
 }

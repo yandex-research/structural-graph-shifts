@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/cora-ml_personalised_dataset_config.yaml
-experiment: experiment_configs/base_pn_experiment_config.yaml
-method: method_configs/base_pn_method_config.yaml
+dataset: dataset_configs/cora-ml/personalised/dataset_config.yaml
+experiment: experiment_configs/pn/experiment_config.yaml
+method: method_configs/pn/method_config.yaml
 name: cora-ml/personalised/pn
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

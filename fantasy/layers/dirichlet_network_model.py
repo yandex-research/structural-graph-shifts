@@ -34,6 +34,9 @@ class DirichletNetworkModel(nn.Module):
         return torch.sum(predictions * temp, dim=1)
 
     def get_knowledge_uncertainty(self, *args, **kwargs):
-        alphas_posterior = self.forward(*args, **kwargs)
-        evidence = self.get_evidence(alphas_posterior)
-        return -evidence
+        # alphas_posterior = self.forward(*args, **kwargs)
+        # evidence = self.get_evidence(alphas_posterior)
+        # return -evidence
+        total_entropy_value = self.get_total_uncertainty(*args, **kwargs)
+        expected_entropy_value = self.get_data_uncertainty(*args, **kwargs)
+        return total_entropy_value - expected_entropy_value

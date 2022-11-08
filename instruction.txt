@@ -1,0 +1,14 @@
+conda create --name fantasy python=3.9
+conda install -c anaconda jupyter
+
+conda install -c pytorch pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3
+conda install -c pyg pyg
+conda install -c dglteam dgl-cuda11.3
+
+conda install -c conda-forge torchmetrics
+conda install -c conda-forge pytorch-lightning
+
+conda install pandas
+conda install -c conda-forge matplotlib
+
+pip install -i https://pypi.org/simple pyblaze

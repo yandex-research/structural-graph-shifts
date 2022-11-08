@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/citeseer_feature_dataset_config.yaml
-experiment: experiment_configs/base_en_experiment_config.yaml
-method: method_configs/base_en_method_config.yaml
+dataset: dataset_configs/citeseer/feature/dataset_config.yaml
+experiment: experiment_configs/en/experiment_config.yaml
+method: method_configs/en/method_config.yaml
 name: citeseer/feature/en
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

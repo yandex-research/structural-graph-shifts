@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/amazon-computer_feature_dataset_config.yaml
-experiment: experiment_configs/base_gen_experiment_config.yaml
-method: method_configs/base_gen_method_config.yaml
+dataset: dataset_configs/amazon-computer/feature/dataset_config.yaml
+experiment: experiment_configs/gen/experiment_config.yaml
+method: method_configs/gen/method_config.yaml
 name: amazon-computer/feature/gen
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

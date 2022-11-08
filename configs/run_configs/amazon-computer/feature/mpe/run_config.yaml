@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/amazon-computer_feature_dataset_config.yaml
-experiment: experiment_configs/base_mpe_experiment_config.yaml
-method: method_configs/base_mpe_method_config.yaml
+dataset: dataset_configs/amazon-computer/feature/dataset_config.yaml
+experiment: experiment_configs/mpe/experiment_config.yaml
+method: method_configs/mpe/method_config.yaml
 name: amazon-computer/feature/mpe
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/cora-ml_random_dataset_config.yaml
-experiment: experiment_configs/base_en_experiment_config.yaml
-method: method_configs/base_en_method_config.yaml
+dataset: dataset_configs/cora-ml/random/dataset_config.yaml
+experiment: experiment_configs/en/experiment_config.yaml
+method: method_configs/en/method_config.yaml
 name: cora-ml/random/en
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

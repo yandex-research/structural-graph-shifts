@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/amazon-photo_personalised_dataset_config.yaml
-experiment: experiment_configs/base_gpn_experiment_config.yaml
-method: method_configs/base_gpn_method_config.yaml
+dataset: dataset_configs/amazon-photo/personalised/dataset_config.yaml
+experiment: experiment_configs/gpn/experiment_config.yaml
+method: method_configs/gpn/method_config.yaml
 name: amazon-photo/personalised/gpn
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

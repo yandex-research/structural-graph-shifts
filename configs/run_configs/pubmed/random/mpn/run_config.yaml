@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/pubmed_random_dataset_config.yaml
-experiment: experiment_configs/base_mpn_experiment_config.yaml
-method: method_configs/base_mpn_method_config.yaml
+dataset: dataset_configs/pubmed/random/dataset_config.yaml
+experiment: experiment_configs/mpn/experiment_config.yaml
+method: method_configs/mpn/method_config.yaml
 name: pubmed/random/mpn
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

@@ -10,8 +10,11 @@ from .natural_posterior_network_module import NaturalPosteriorNetworkLightningMo
 from .graph_posterior_network_module import GraphPosteriorNetworkLightningModule, GraphPosteriorFlowLightningModule
 from .natural_graph_posterior_network_module import NaturalGraphPosteriorNetworkLightningModule, NaturalGraphPosteriorFlowLightningModule
 
-from .compatible_posterior_network_module import CompatiblePosteriorNetworkLightningModule, CompatiblePosteriorPredictorLightningModule, CompatiblePosteriorFlowLightningModule
-from .natural_compatible_posterior_network_module import NaturalCompatiblePosteriorNetworkLightningModule, NaturalCompatiblePosteriorPredictorLightningModule, NaturalCompatiblePosteriorFlowLightningModule
+# from .compatible_posterior_network_module import CompatiblePosteriorNetworkLightningModule, CompatiblePosteriorPredictorLightningModule, CompatiblePosteriorFlowLightningModule
+# from .natural_compatible_posterior_network_module import NaturalCompatiblePosteriorNetworkLightningModule, NaturalCompatiblePosteriorPredictorLightningModule, NaturalCompatiblePosteriorFlowLightningModule
+
+# from .supreme_posterior_network_module import SupremePosteriorNetworkLightningModule, SupremePosteriorFlowLightningModule
+# from .natural_supreme_posterior_network_module import NaturalSupremePosteriorNetworkLightningModule, NaturalSupremePosteriorFlowLightningModule
 
 module_name_to_class = {
     'default_message_passing_network': DefaultMessagePassingNetworkLightningModule,
@@ -30,15 +33,21 @@ module_name_to_class = {
     'natural_posterior_flow': NaturalPosteriorFlowLightningModule,
     
     'natural_graph_posterior_network': NaturalGraphPosteriorNetworkLightningModule,
-    'natural_graph_posterior_flow': NaturalGraphPosteriorFlowLightningModule,    
-    
-    'compatible_posterior_network': CompatiblePosteriorNetworkLightningModule,
-    'compatible_posterior_predictor': CompatiblePosteriorPredictorLightningModule,
-    'compatible_posterior_flow': CompatiblePosteriorFlowLightningModule,
+    'natural_graph_posterior_flow': NaturalGraphPosteriorFlowLightningModule,
 
-    'natural_compatible_posterior_network': NaturalCompatiblePosteriorNetworkLightningModule,
-    'natural_compatible_posterior_predictor': NaturalCompatiblePosteriorPredictorLightningModule,
-    'natural_compatible_posterior_flow': NaturalCompatiblePosteriorFlowLightningModule,
+    # 'supreme_posterior_network': SupremePosteriorNetworkLightningModule,
+    # 'supreme_posterior_flow': SupremePosteriorFlowLightningModule,
+
+    # 'natural_supreme_posterior_network': NaturalSupremePosteriorNetworkLightningModule,
+    # 'natural_supreme_posterior_flow': NaturalSupremePosteriorFlowLightningModule,
+    
+    # 'compatible_posterior_network': CompatiblePosteriorNetworkLightningModule,
+    # 'compatible_posterior_predictor': CompatiblePosteriorPredictorLightningModule,
+    # 'compatible_posterior_flow': CompatiblePosteriorFlowLightningModule,
+
+    # 'natural_compatible_posterior_network': NaturalCompatiblePosteriorNetworkLightningModule,
+    # 'natural_compatible_posterior_predictor': NaturalCompatiblePosteriorPredictorLightningModule,
+    # 'natural_compatible_posterior_flow': NaturalCompatiblePosteriorFlowLightningModule,
 
     # '': None
 }

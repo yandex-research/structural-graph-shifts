@@ -1,3 +1,4 @@
+import numpy as np
 from scipy import io
 
 import torch
@@ -20,7 +21,7 @@ def prepare_homogenous_graph(dataset_root, dataset_name, prepare_config):
     dataset_path = f"{dataset_root}/{dataset_name}/data.mat"
     data = io.loadmat(dataset_path)
 
-    features = data['features'].todense()
+    features = data['features'] if type(data['features']) == np.ndarray else data['features'].todense()
     labels = data['labels'].squeeze()
 
     rows, cols = data['edges']
@@ -37,7 +38,7 @@ def prepare_heterogenous_graph(dataset_root, dataset_name, prepare_config):
     dataset_path = f"{dataset_root}/{dataset_name}/data.mat"
     data = io.loadmat(dataset_path)
 
-    features = data['features'].todense()
+    features = data['features'] if type(data['features']) == np.ndarray else data['features'].todense()
     labels = data['labels'].squeeze()
         
     edge_data = {}
@@ -71,6 +72,12 @@ dataset_name_to_prepare_graph_fn = {
 
     'coauthor-cs': prepare_homogenous_graph,
     'coauthor-physics': prepare_homogenous_graph,
+
+    # 'amazon-ratings': prepare_homogenous_graph,
+    # 'minesweeper': prepare_homogenous_graph,
+    # 'questions': prepare_homogenous_graph,
+    # 'roman-empire': prepare_homogenous_graph,
+    # 'wiki-cooc': prepare_homogenous_graph,
 }
 
 
@@ -109,6 +116,12 @@ dataset_name_to_process_graph_fn = {
 
     'coauthor-cs': process_homogenous_graph,
     'coauthor-physics': process_homogenous_graph,
+
+    # 'amazon-ratings': process_homogenous_graph,
+    # 'minesweeper': process_homogenous_graph,
+    # 'questions': process_homogenous_graph,
+    # 'roman-empire': process_homogenous_graph,
+    # 'wiki-cooc': process_homogenous_graph,
 }
 
 
@@ -139,4 +152,10 @@ dataset_name_to_prepare_masks_fn = {
 
     'coauthor-cs': prepare_homogenous_masks,
     'coauthor-physics': prepare_homogenous_masks,
+
+    # 'amazon-ratings': prepare_homogenous_masks,
+    # 'minesweeper': prepare_homogenous_masks,
+    # 'questions': prepare_homogenous_masks,
+    # 'roman-empire': prepare_homogenous_masks,
+    # 'wiki-cooc': prepare_homogenous_masks,
 }

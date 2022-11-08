@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/coauthor-physics_personalised_dataset_config.yaml
-experiment: experiment_configs/base_natpn_experiment_config.yaml
-method: method_configs/base_natpn_method_config.yaml
+dataset: dataset_configs/coauthor-physics/personalised/dataset_config.yaml
+experiment: experiment_configs/natpn/experiment_config.yaml
+method: method_configs/natpn/method_config.yaml
 name: coauthor-physics/personalised/natpn
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml

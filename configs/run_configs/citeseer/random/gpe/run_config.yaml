@@ -1,7 +1,7 @@
 datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/citeseer_random_dataset_config.yaml
-experiment: experiment_configs/base_gpe_experiment_config.yaml
-method: method_configs/base_gpe_method_config.yaml
+dataset: dataset_configs/citeseer/random/dataset_config.yaml
+experiment: experiment_configs/gpe/experiment_config.yaml
+method: method_configs/gpe/method_config.yaml
 name: citeseer/random/gpe
 root: ./configs
 sampler: sampler_configs/none_sampler_config.yaml
