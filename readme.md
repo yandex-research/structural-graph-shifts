@@ -59,6 +59,6 @@ Here you can find the source code of our experimental framework, including the c
 
 This main script for loading experimental configs and performing training or evaluation.
 
-If you want to change the parameters of your experiment, be it the data split strategy, the hidden dimension of the model layer, or the index of GPU at your server, please check the corresponding `configs` subdirectory. 
+If you want to change the parameters of your experiment, whether it is the data split strategy, the hidden dimension of the model layer, the index of GPU at your server, or something else, please check the corresponding `configs` subdirectory. 
 Also, if you need to access the proposed graph datasets or associated data splits, please refer to the `dataset` subdirectories. 
 Finally, if you are interested in the source code for our experimental pipeline, including models, methods and metrics, you should take a look at the `fantasy` subdirectories.
