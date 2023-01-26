@@ -53,7 +53,6 @@ dataset_names = [
 
     'roman-empire',
     'amazon-ratings',
-    'minesweeper',
     'workers',
     'questions',
 ]

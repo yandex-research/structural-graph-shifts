@@ -1,8 +1,8 @@
-# Revisiting Uncertainty Estimation for Node Classification: New Benchmark and Insights
+# Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts
 
 This repository provides an official implementation of experimental framework for the paper:
 
-[Revisiting Uncertainty Estimation for Node Classification: New Benchmark and Insights](https://openreview.net/forum?id=DB3BH3arU2Y)
+[Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://openreview.net/forum?id=DKpQxerf8q)
 
 ## Installation
 

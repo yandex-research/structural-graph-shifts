@@ -20,6 +20,6 @@ To prepare one of the proposed splits on some of the considered graph datasets, 
 - `in_valid_size`: size of ID valid part
 - `out_valid_size`: size of OOD valid part
 
-Please take into account that sizes should be described by their absolute values, not relative to the containing subset (e.g., if `in_size` is 0.5 and `in_train_size` is half of ID subset, you should specify 0.25 for it). Note that `in_test_size` and `out_test_size` are inferred from the specified values.
+Please take into account that sizes should be described by their absolute values, not relative to the containing subset (e.g., if `in_size` is 0.5 and `in_train_size` is half of ID subset, you should specify 0.25 for it). Note that `in_test_size` and `out_test_size` are derived from the other values, so you are not required to specify them.
 
 To apply a split strategy different from those proposed in our paper, you should implement a function to compute the corresponding node-level graph property (see `utils.py` for the existing implementations of `pagerank`, `personalised` and `clustering` splits).
