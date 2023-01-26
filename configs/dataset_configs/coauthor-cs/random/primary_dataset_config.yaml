@@ -1,0 +1,7 @@
+dataset_name: coauthor-cs
+num_classes: 15
+num_features: 6805
+prepare_config: null
+process_config: null
+split_config:
+  type: random-primary

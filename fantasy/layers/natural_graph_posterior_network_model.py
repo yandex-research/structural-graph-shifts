@@ -7,7 +7,7 @@ import pyblaze.nn.functional as X
 import dgl
 import dgl.nn.pytorch as dglnn
 
-from .general import IndependentSequential
+from .general import FeedForwardSequential
 from .normalizing_flow_model import NormalizingFlowModel
 from .propagation_model import StandardPropagationModel
 from .dirichlet_network_model import DirichletNetworkModel
@@ -25,16 +25,17 @@ class NaturalGraphPosteriorNetworkModel(DirichletNetworkModel):
         self.num_classes = num_classes
         self.impute_config()
         
-        self.encoder = IndependentSequential(self.config['encoder_config'])
-        self.projector = IndependentSequential(self.config['projector_config'])
-        self.predictor = IndependentSequential(self.config['predictor_config'])
+        self.preprocessing = FeedForwardSequential(self.config['preprocessing_config'])
+        self.encoder = FeedForwardSequential(self.config['encoder_config'])
+        self.projector = FeedForwardSequential(self.config['projector_config'])
+        self.predictor = FeedForwardSequential(self.config['predictor_config'])
         
         self.flow = NormalizingFlowModel(self.config['flow_config'])
         self.propagation = StandardPropagationModel(self.config['propagation_config'])
         
     def impute_config(self):
-        self.config['encoder_config']['feature_dims'].insert(0, self.num_features)
-        self.config['predictor_config']['feature_dims'].append(self.num_classes)
+        self.config['preprocessing_config']['feature_dims'][0] = self.num_features
+        self.config['predictor_config']['feature_dims'][-1] = self.num_classes
 
     def get_log_density_estimates(self, projections):
         log_density_estimates = torch.zeros(len(projections), self.num_classes, device=projections.device)
@@ -50,7 +51,7 @@ class NaturalGraphPosteriorNetworkModel(DirichletNetworkModel):
         return log_scale
 
     def forward(self, graph, features):
-        representations = self.encoder(features)
+        representations = self.encoder(self.preprocessing(features))
         projections = self.projector(representations)
         
         log_density_estimates = self.get_log_density_estimates(projections)

@@ -36,6 +36,10 @@ class SeparateExperiment:
         # when the dataset is initialised, it also performs data splits
         dataset_class = get_dataset_class(self.dataset_config.class_name)
         dataset = dataset_class(self.dataset_config.clone())
+        
+        dataset.prepare_graph()
+        dataset.prepare_masks()
+        
         self.dataset = dataset
 
     def setup_sampler(self):

@@ -64,9 +64,6 @@ class PosteriorNetworkLightningModule(BaseLightningModule):
 
         values = self.track_loss(batch, outputs)
         self.track_classification_performance(batch, predictions)
-        self.track_misclassification_detection_performance(batch, estimates, predictions)
-        self.track_ood_detection_performance(batch, estimates)
-        self.track_aggregated_performance(batch, estimates, predictions)
         
         return values[-1]       # anyway, there is only one value in the list, as we use one dataloader for train step      
 
@@ -75,9 +72,6 @@ class PosteriorNetworkLightningModule(BaseLightningModule):
 
         self.track_loss(batch, outputs)
         self.track_classification_performance(batch, predictions)
-        self.track_misclassification_detection_performance(batch, estimates, predictions)
-        self.track_ood_detection_performance(batch, estimates)
-        self.track_aggregated_performance(batch, estimates, predictions)
 
     def test_step(self, batch, batch_idx):
         outputs, predictions, estimates = self.general_step(batch)
@@ -113,22 +107,6 @@ class PosteriorFlowLightningModule(BaseLightningModule):
 
     def forward(self, batch):
         graph, features, labels, masks, step_name = batch
-        
-        # mask = masks[OBSERVED_LABELS_MASK_NAME]                     # the observed class probas are always derived from the training data
-        # labels_observed = labels[mask]
-
-        # with torch.no_grad():
-        #     representations = self.model.encoder(graph, features)
-        #     projections = self.model.projector(representations)
-
-        # log_conditional_density_estimates = self.model.get_log_density_estimates(projections)
-        # log_class_probas = torch.log(self.model.get_class_probas(labels_observed))
-        # log_density_estimates = log_conditional_density_estimates + log_class_probas
-        
-        # log_scale = self.model.get_evidence_scale()
-        # alphas_posterior = 1.0 + torch.exp(torch.clamp(log_density_estimates + log_scale, min=-30.0, max=30.0))
-        # return alphas_posterior
-
         return self.model.forward(graph, features, labels, masks)
 
     def general_step(self, batch):

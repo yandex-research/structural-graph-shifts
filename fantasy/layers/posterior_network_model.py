@@ -7,7 +7,7 @@ import pyblaze.nn.functional as X
 import dgl
 import dgl.nn.pytorch as dglnn
 
-from .general import DeterministicConvolutionSequential, IndependentSequential
+from .general import ConvolutionSequential, FeedForwardSequential
 from .normalizing_flow_model import NormalizingFlowModel
 from .dirichlet_network_model import DirichletNetworkModel
 
@@ -24,8 +24,9 @@ class PosteriorNetworkModel(DirichletNetworkModel):
         self.num_classes = num_classes
         self.impute_config()
         
-        self.encoder = DeterministicConvolutionSequential(self.config['encoder_config'])
-        self.projector = IndependentSequential(self.config['projector_config'])
+        self.preprocessing = FeedForwardSequential(self.config['preprocessing_config'])
+        self.encoder = ConvolutionSequential(self.config['encoder_config'])
+        self.projector = FeedForwardSequential(self.config['projector_config'])
         
         self.flows = nn.ModuleList([
             NormalizingFlowModel(self.config['flow_config']) 
@@ -33,7 +34,7 @@ class PosteriorNetworkModel(DirichletNetworkModel):
         ])
 
     def impute_config(self):
-        self.config['encoder_config']['feature_dims'].insert(0, self.num_features)
+        self.config['preprocessing_config']['feature_dims'][0] = self.num_features
 
     def get_class_probas(self, observed):
         class_counts = torch.zeros(self.num_classes, device=observed.device)
@@ -62,7 +63,7 @@ class PosteriorNetworkModel(DirichletNetworkModel):
         mask = masks[OBSERVED_LABELS_MASK_NAME]                     # the observed class probas are always derived from the training data
         labels_observed = labels[mask]
 
-        representations = self.encoder(graph, features)
+        representations = self.encoder(graph, self.preprocessing(features))
         projections = self.projector(representations)
 
         log_conditional_density_estimates = self.get_log_density_estimates(projections)

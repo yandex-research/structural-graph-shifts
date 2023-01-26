@@ -63,9 +63,6 @@ class NaturalGraphPosteriorNetworkLightningModule(BaseLightningModule):
 
         values = self.track_loss(batch, outputs)
         self.track_classification_performance(batch, predictions)
-        self.track_misclassification_detection_performance(batch, estimates, predictions)
-        self.track_ood_detection_performance(batch, estimates)
-        self.track_aggregated_performance(batch, estimates, predictions)
         
         return values[-1]       # anyway, there is only one value in the list, as we use one dataloader for train step      
 
@@ -74,9 +71,6 @@ class NaturalGraphPosteriorNetworkLightningModule(BaseLightningModule):
 
         self.track_loss(batch, outputs)
         self.track_classification_performance(batch, predictions)
-        self.track_misclassification_detection_performance(batch, estimates, predictions)
-        self.track_ood_detection_performance(batch, estimates)
-        self.track_aggregated_performance(batch, estimates, predictions)
 
     def test_step(self, batch, batch_idx):
         outputs, predictions, estimates = self.general_step(batch)

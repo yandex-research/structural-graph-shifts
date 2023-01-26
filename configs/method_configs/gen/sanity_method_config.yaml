@@ -1,0 +1,134 @@
+train_routine:
+
+  train_module:
+    class_name: graph_evidential_network
+
+    optimizer_config:
+      lr: 0.0003
+      weight_decay: 0.00001
+
+    model_config:
+      preprocessing_config:
+        type: ff
+        feature_dims:
+        - null
+        - 256
+        layer_config:
+          normalisation_name: none
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: False
+
+      encoder_config:
+        type: ff
+        feature_dims:
+        - 256
+        - 256
+        - 256
+        layer_config:
+          normalisation_name: layer
+          residual: True
+          dropout: 0.2
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: False
+
+      predictor_config:
+        type: ff
+        feature_dims:
+        - 256
+        - 256
+        - null
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+
+      propagation_config:
+        alpha: 0.2
+        num_iters: 5
+      
+    metrics_config:
+      classification_basic:
+        metric_names:
+          - accuracy
+        metric_args:
+          num_classes:
+          average: micro
+
+      classification_ranking:
+        metric_names:
+          - auroc
+          - ap
+        metric_args:
+          num_classes:
+          average: macro
+
+      misclassification_detection_using_data:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      misclassification_detection_using_knowledge:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      misclassification_detection_using_total:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      ood_detection_using_data:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      ood_detection_using_knowledge:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      ood_detection_using_total:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      aggregated_performance_using_data:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+      aggregated_performance_using_knowledge:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+      aggregated_performance_using_total:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+    loss_config:
+      beta: 0.001
+
+
+infer_routine:
+
+  eval_module:
+
+  infer_module:

@@ -1,0 +1,7 @@
+dataset_name: cora-ml
+num_classes: 7
+num_features: 2879
+prepare_config: null
+process_config: null
+split_config:
+  type: clustering-sanity

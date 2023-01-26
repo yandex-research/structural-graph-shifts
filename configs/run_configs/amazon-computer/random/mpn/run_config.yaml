@@ -1,8 +1,0 @@
-datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/amazon-computer/random/dataset_config.yaml
-experiment: experiment_configs/mpn/experiment_config.yaml
-method: method_configs/mpn/method_config.yaml
-name: amazon-computer/random/mpn
-root: ./configs
-sampler: sampler_configs/none_sampler_config.yaml
-trainer: trainer_configs/standard_trainer_config.yaml

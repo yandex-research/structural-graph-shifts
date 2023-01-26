@@ -8,7 +8,7 @@ import pyblaze.nn.functional as X
 import dgl
 import dgl.nn.pytorch as dglnn
 
-from .general import DeterministicConvolutionSequential, IndependentSequential
+from .general import ConvolutionSequential, FeedForwardSequential
 from .normalizing_flow_model import NormalizingFlowModel
 from .dirichlet_network_model import DirichletNetworkModel
 
@@ -25,14 +25,15 @@ class EvidentialNetworkModel(DirichletNetworkModel):
         self.num_classes = num_classes
         self.impute_config()
         
-        self.encoder = DeterministicConvolutionSequential(self.config['encoder_config'])
-        self.predictor = IndependentSequential(self.config['predictor_config'])
+        self.preprocessing = FeedForwardSequential(self.config['preprocessing_config'])
+        self.encoder = ConvolutionSequential(self.config['encoder_config'])
+        self.predictor = FeedForwardSequential(self.config['predictor_config'])
 
     def impute_config(self):
-        self.config['encoder_config']['feature_dims'].insert(0, self.num_features)
-        self.config['predictor_config']['feature_dims'].append(self.num_classes)
+        self.config['preprocessing_config']['feature_dims'][0] = self.num_features
+        self.config['predictor_config']['feature_dims'][-1] = self.num_classes
 
     def forward(self, graph, features):
-        representations = self.encoder(graph, features)
+        representations = self.encoder(graph, self.preprocessing(features))
         alphas_posterior = 1.0 + torch.exp(torch.clamp(self.predictor(representations), min=-30.0, max=30.0))
         return alphas_posterior

@@ -1,0 +1,7 @@
+dataset_name: workers
+num_classes: 2
+num_features: 10
+prepare_config:
+process_config:
+split_config:
+  type: pagerank-sanity

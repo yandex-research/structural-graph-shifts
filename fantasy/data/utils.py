@@ -17,7 +17,7 @@ node_names = {
 ### prepare functions
 
 
-def prepare_homogenous_graph(dataset_root, dataset_name, prepare_config):
+def load_homogenous_graph(dataset_root, dataset_name, prepare_config):
     dataset_path = f"{dataset_root}/{dataset_name}/data.mat"
     data = io.loadmat(dataset_path)
 
@@ -34,7 +34,7 @@ def prepare_homogenous_graph(dataset_root, dataset_name, prepare_config):
     return graph
 
 
-def prepare_heterogenous_graph(dataset_root, dataset_name, prepare_config):
+def load_heterogenous_graph(dataset_root, dataset_name, prepare_config):
     dataset_path = f"{dataset_root}/{dataset_name}/data.mat"
     data = io.loadmat(dataset_path)
 
@@ -60,24 +60,24 @@ def prepare_heterogenous_graph(dataset_root, dataset_name, prepare_config):
     return graph
 
 
-dataset_name_to_prepare_graph_fn = {
-    'fraud-amazon': prepare_heterogenous_graph,
+dataset_name_to_load_graph_fn = {
+    'fraud-amazon': load_heterogenous_graph,
 
-    'amazon-computer': prepare_homogenous_graph,
-    'amazon-photo': prepare_homogenous_graph,
+    'amazon-computer': load_homogenous_graph,
+    'amazon-photo': load_homogenous_graph,
     
-    'cora-ml': prepare_homogenous_graph,
-    'citeseer': prepare_homogenous_graph,
-    'pubmed': prepare_homogenous_graph,
+    'cora-ml': load_homogenous_graph,
+    'citeseer': load_homogenous_graph,
+    'pubmed': load_homogenous_graph,
 
-    'coauthor-cs': prepare_homogenous_graph,
-    'coauthor-physics': prepare_homogenous_graph,
+    'coauthor-cs': load_homogenous_graph,
+    'coauthor-physics': load_homogenous_graph,
 
-    # 'amazon-ratings': prepare_homogenous_graph,
-    # 'minesweeper': prepare_homogenous_graph,
-    # 'questions': prepare_homogenous_graph,
-    # 'roman-empire': prepare_homogenous_graph,
-    # 'wiki-cooc': prepare_homogenous_graph,
+    'roman-empire': load_homogenous_graph,
+    'amazon-ratings': load_homogenous_graph,
+    'minesweeper': load_homogenous_graph,
+    'workers': load_homogenous_graph,
+    'questions': load_homogenous_graph,
 }
 
 
@@ -117,11 +117,11 @@ dataset_name_to_process_graph_fn = {
     'coauthor-cs': process_homogenous_graph,
     'coauthor-physics': process_homogenous_graph,
 
-    # 'amazon-ratings': process_homogenous_graph,
-    # 'minesweeper': process_homogenous_graph,
-    # 'questions': process_homogenous_graph,
-    # 'roman-empire': process_homogenous_graph,
-    # 'wiki-cooc': process_homogenous_graph,
+    'roman-empire': process_homogenous_graph,
+    'amazon-ratings': process_homogenous_graph,
+    'minesweeper': process_homogenous_graph,
+    'workers': process_homogenous_graph,
+    'questions': process_homogenous_graph,
 }
 
 
@@ -153,9 +153,9 @@ dataset_name_to_prepare_masks_fn = {
     'coauthor-cs': prepare_homogenous_masks,
     'coauthor-physics': prepare_homogenous_masks,
 
-    # 'amazon-ratings': prepare_homogenous_masks,
-    # 'minesweeper': prepare_homogenous_masks,
-    # 'questions': prepare_homogenous_masks,
-    # 'roman-empire': prepare_homogenous_masks,
-    # 'wiki-cooc': prepare_homogenous_masks,
+    'roman-empire': prepare_homogenous_masks,
+    'amazon-ratings': prepare_homogenous_masks,
+    'minesweeper': prepare_homogenous_masks,
+    'workers': prepare_homogenous_masks,
+    'questions': prepare_homogenous_masks,
 }

@@ -1,0 +1,7 @@
+dataset_name: amazon-ratings
+num_classes: 5
+num_features: 300
+prepare_config: null
+process_config: null
+split_config:
+  type: pagerank-primary

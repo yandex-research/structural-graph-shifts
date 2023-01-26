@@ -1,7 +1,0 @@
-dataset_name: citeseer
-num_classes: 6
-num_features: 3703
-prepare_config:
-process_config:
-split_config:
-  type: random

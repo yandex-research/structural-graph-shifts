@@ -1,7 +1,0 @@
-dataset_name: amazon-photo
-num_classes: 8
-num_features: 745
-prepare_config:
-process_config:
-split_config:
-  type: feature

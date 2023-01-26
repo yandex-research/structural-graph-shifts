@@ -11,7 +11,7 @@ def set_random_seed(seed):
     
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-
+    torch.set_num_threads(128)
 
 def average_dataframe(something):
     return pd.DataFrame(something.mean(axis=0)).T

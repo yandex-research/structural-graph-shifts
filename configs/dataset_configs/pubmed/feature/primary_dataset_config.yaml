@@ -1,0 +1,7 @@
+dataset_name: pubmed
+num_classes: 3
+num_features: 500
+prepare_config: null
+process_config: null
+split_config:
+  type: feature-primary

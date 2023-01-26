@@ -1,7 +1,7 @@
 train_routine:
 
   train_module:
-    class_name: default_mpn
+    class_name: default_message_passing_network
 
     optimizer_config:
       lr: 0.0003
@@ -201,7 +201,7 @@ infer_routine:
 
     # the following attributes are used only in ensemble module on inference
     abstract_config:
-      base_name: default_mpn
+      base_name: default_message_passing_network
 
       start_init_no: 1
       end_init_no: 5

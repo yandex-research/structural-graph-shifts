@@ -8,7 +8,7 @@ import pyblaze.nn.functional as X
 import dgl
 import dgl.nn.pytorch as dglnn
 
-from .general import DeterministicConvolutionSequential, IndependentSequential
+from .general import ConvolutionSequential, FeedForwardSequential
 from .propagation_model import StandardPropagationModel
 from .dirichlet_network_model import DirichletNetworkModel
 
@@ -25,16 +25,17 @@ class GraphEvidentialNetworkModel(DirichletNetworkModel):
         self.num_classes = num_classes
         self.impute_config()
         
-        self.encoder = IndependentSequential(self.config['encoder_config'])
-        self.predictor = IndependentSequential(self.config['predictor_config'])
+        self.preprocessing = FeedForwardSequential(self.config['preprocessing_config'])
+        self.encoder = FeedForwardSequential(self.config['encoder_config'])
+        self.predictor = FeedForwardSequential(self.config['predictor_config'])
         self.propagation = StandardPropagationModel(self.config['propagation_config'])
 
     def impute_config(self):
-        self.config['encoder_config']['feature_dims'].insert(0, self.num_features)
-        self.config['predictor_config']['feature_dims'].append(self.num_classes)
+        self.config['preprocessing_config']['feature_dims'][0] = self.num_features
+        self.config['predictor_config']['feature_dims'][-1] = self.num_classes
 
     def forward(self, graph, features):
-        representations = self.encoder(features)
+        representations = self.encoder(self.preprocessing(features))
         alphas_feature = torch.exp(torch.clamp(self.predictor(representations), min=-30.0, max=30.0))
         alphas_posterior = 1.0 + self.propagation(graph, alphas_feature)
         return alphas_posterior

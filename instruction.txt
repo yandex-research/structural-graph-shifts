@@ -10,5 +10,8 @@ conda install -c conda-forge pytorch-lightning
 
 conda install pandas
 conda install -c conda-forge matplotlib
+conda install -c conda-forge graph-tool
 
 pip install -i https://pypi.org/simple pyblaze
+
+conda update --all --yes

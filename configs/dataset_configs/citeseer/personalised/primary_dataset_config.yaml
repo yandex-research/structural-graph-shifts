@@ -1,0 +1,7 @@
+dataset_name: citeseer
+num_classes: 6
+num_features: 3703
+prepare_config: null
+process_config: null
+split_config:
+  type: personalised-primary

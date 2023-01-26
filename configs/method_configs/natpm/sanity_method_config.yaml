@@ -1,0 +1,454 @@
+train_routine:
+
+  warmup_module:
+    class_name: natural_posterior_flow
+
+    optimizer_config:
+      lr: 0.001
+      weight_decay: 0.0
+
+    model_config:
+      preprocessing_config:
+        type: ff
+        feature_dims:
+        - null
+        - 256
+        layer_config:
+          normalisation_name: none
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: False
+
+      encoder_config:
+        type: conv
+        feature_dims:
+        - 256
+        - 256
+        - 256
+        layer_config:
+          normalisation_name: layer
+          residual: True
+          dropout: 0.2
+          activation_name: gelu
+          activation_args: {}
+          layer_name: sage
+          layer_args:
+            aggregator_type: mean
+        final: False
+
+      projector_config:
+        type: ff
+        feature_dims:
+        - 256
+        - 16
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+
+      flow_config:
+        flow_name: radial
+        latent_dim: 16
+        num_layers: 8
+
+      predictor_config:
+        type: ff
+        feature_dims:
+        - 256
+        - null
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+      
+    metrics_config:
+
+    loss_config:
+      beta: 0.001
+
+  train_module:
+    class_name: natural_posterior_network
+
+    optimizer_config:
+      lr: 0.0003
+      weight_decay: 0.00001
+
+    model_config:
+      preprocessing_config:
+        type: ff
+        feature_dims:
+        - null
+        - 256
+        layer_config:
+          normalisation_name: none
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: False
+
+      encoder_config:
+        type: conv
+        feature_dims:
+        - 256
+        - 256
+        - 256
+        layer_config:
+          normalisation_name: layer
+          residual: True
+          dropout: 0.2
+          activation_name: gelu
+          activation_args: {}
+          layer_name: sage
+          layer_args:
+            aggregator_type: mean
+        final: False
+
+      projector_config:
+        type: ff
+        feature_dims:
+        - 256
+        - 16
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+
+      flow_config:
+        flow_name: radial
+        latent_dim: 16
+        num_layers: 8
+
+      predictor_config:
+        type: ff
+        feature_dims:
+        - 256
+        - null
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+      
+    metrics_config:
+      classification_basic:
+        metric_names:
+          - accuracy
+        metric_args:
+          num_classes:
+          average: micro
+
+      classification_ranking:
+        metric_names:
+          - auroc
+          - ap
+        metric_args:
+          num_classes:
+          average: macro
+
+      misclassification_detection_using_data:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      misclassification_detection_using_knowledge:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      misclassification_detection_using_total:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      ood_detection_using_data:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      ood_detection_using_knowledge:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      ood_detection_using_total:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      aggregated_performance_using_data:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+      aggregated_performance_using_knowledge:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+      aggregated_performance_using_total:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+    loss_config:
+      beta: 0.001
+
+  finetune_module:
+    class_name: natural_posterior_flow
+
+    optimizer_config:
+      lr: 0.001
+      weight_decay: 0.0
+
+    model_config:
+      preprocessing_config:
+        type: ff
+        feature_dims:
+        - null
+        - 256
+        layer_config:
+          normalisation_name: none
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: False
+
+      encoder_config:
+        type: conv
+        feature_dims:
+        - 256
+        - 256
+        - 256
+        layer_config:
+          normalisation_name: layer
+          residual: True
+          dropout: 0.2
+          activation_name: gelu
+          activation_args: {}
+          layer_name: sage
+          layer_args:
+            aggregator_type: mean
+        final: False
+
+      projector_config:
+        type: ff
+        feature_dims:
+        - 256
+        - 16
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+
+      flow_config:
+        flow_name: radial
+        latent_dim: 16
+        num_layers: 8
+
+      predictor_config:
+        type: ff
+        feature_dims:
+        - 256
+        - null
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+      
+    metrics_config:
+
+    loss_config:
+      beta: 0.001
+
+
+infer_routine:
+
+  eval_module:
+
+  infer_module:
+    class_name: dirichlet_mixture
+
+    optimizer_config:
+      lr: 0.0003
+      weight_decay: 0.00001
+
+    model_config:
+      preprocessing_config:
+        type: ff
+        feature_dims:
+        - null
+        - 256
+        layer_config:
+          normalisation_name: none
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: False
+
+      encoder_config:
+        type: conv
+        feature_dims:
+        - 256
+        - 256
+        - 256
+        layer_config:
+          normalisation_name: layer
+          residual: True
+          dropout: 0.2
+          activation_name: gelu
+          activation_args: {}
+          layer_name: sage
+          layer_args:
+            aggregator_type: mean
+        final: False
+
+      projector_config:
+        type: ff
+        feature_dims:
+        - 256
+        - 16
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+
+      flow_config:
+        flow_name: radial
+        latent_dim: 16
+        num_layers: 8
+
+      predictor_config:
+        type: ff
+        feature_dims:
+        - 256
+        - null
+        layer_config:
+          normalisation_name: layer
+          residual: False
+          dropout: 0.0
+          activation_name: gelu
+          activation_args: {}
+          layer_name: linear
+          layer_args: {}
+        final: True
+      
+    metrics_config:
+      classification_basic:
+        metric_names:
+          - accuracy
+        metric_args:
+          num_classes:
+          average: micro
+
+      classification_ranking:
+        metric_names:
+          - auroc
+          - ap
+        metric_args:
+          num_classes:
+          average: macro
+
+      misclassification_detection_using_data:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      misclassification_detection_using_knowledge:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      misclassification_detection_using_total:
+        metric_names:
+          - prr
+        metric_args: {}
+
+      ood_detection_using_data:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      ood_detection_using_knowledge:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      ood_detection_using_total:
+        metric_names:
+          - auroc
+          - ap
+        metric_args: {}
+
+      aggregated_performance_using_data:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+      aggregated_performance_using_knowledge:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+      aggregated_performance_using_total:
+        metric_names:
+          - auprc
+        metric_args: {}
+
+    # the following attributes are used only in ensemble module on inference
+    abstract_config:
+      base_name: natural_posterior_network
+
+      start_init_no: 1
+      end_init_no: 5

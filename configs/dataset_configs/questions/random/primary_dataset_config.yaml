@@ -1,0 +1,7 @@
+dataset_name: questions
+num_classes: 2
+num_features: 301
+prepare_config: null
+process_config: null
+split_config:
+  type: random-primary

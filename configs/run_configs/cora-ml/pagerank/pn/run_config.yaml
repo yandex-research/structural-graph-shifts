@@ -1,8 +1,0 @@
-datamodule: datamodule_configs/standard_datamodule_config.yaml
-dataset: dataset_configs/cora-ml/pagerank/dataset_config.yaml
-experiment: experiment_configs/pn/experiment_config.yaml
-method: method_configs/pn/method_config.yaml
-name: cora-ml/pagerank/pn
-root: ./configs
-sampler: sampler_configs/none_sampler_config.yaml
-trainer: trainer_configs/standard_trainer_config.yaml

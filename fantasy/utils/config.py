@@ -145,7 +145,7 @@ def read_config(path):
 
 def save_config(config, path):
     with open(path, 'w', encoding='utf8') as outfile:
-        yaml.dump(config, outfile, default_flow_style=False, allow_unicode=True)
+        yaml.dump(config, outfile, default_flow_style=False, allow_unicode=True, sort_keys=False)
 
 
 def pprint_config(config):

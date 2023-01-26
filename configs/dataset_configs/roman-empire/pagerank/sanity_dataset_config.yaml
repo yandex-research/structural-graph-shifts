@@ -1,0 +1,7 @@
+dataset_name: roman-empire
+num_classes: 18
+num_features: 300
+prepare_config:
+process_config:
+split_config:
+  type: pagerank-sanity

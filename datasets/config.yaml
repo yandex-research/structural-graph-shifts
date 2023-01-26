@@ -1,0 +1,14 @@
+data_root: ../datasets
+config_root: ../configs
+
+dataset_name: pubmed
+strategy_name: clustering
+version_name: extra
+save: True
+
+in_size: 0.5
+out_size: 0.5
+
+in_train_size: 0.3
+in_valid_size: 0.1
+out_valid_size: 0.1

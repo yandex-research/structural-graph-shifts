@@ -6,7 +6,7 @@ import torch.distributions as D
 import dgl
 import dgl.nn.pytorch as dglnn
 
-from .general import IndependentSequential
+from .general import FeedForwardSequential
 
 
 class DefaultMultilayerPerceptronModel(nn.Module):
@@ -18,15 +18,16 @@ class DefaultMultilayerPerceptronModel(nn.Module):
         self.num_classes = num_classes
         self.impute_config()
         
-        self.encoder = IndependentSequential(self.config['encoder_config'])
-        self.classifier = IndependentSequential(self.config['classifier_config'])
+        self.preprocessing = FeedForwardSequential(self.config['preprocessing_config'])
+        self.encoder = FeedForwardSequential(self.config['encoder_config'])
+        self.classifier = FeedForwardSequential(self.config['classifier_config'])
 
     def impute_config(self):
-        self.config['encoder_config']['feature_dims'].insert(0, self.num_features)
-        self.config['classifier_config']['feature_dims'].append(self.num_classes)
+        self.config['preprocessing_config']['feature_dims'][0] = self.num_features
+        self.config['classifier_config']['feature_dims'][-1] = self.num_classes
 
     def forward(self, graph, features):
-        return self.classifier(self.encoder(features))
+        return self.classifier(self.encoder(self.preprocessing(features)))
 
     def get_total_uncertainty(self, *args, **kwargs):
         logits = self.forward(*args, **kwargs)

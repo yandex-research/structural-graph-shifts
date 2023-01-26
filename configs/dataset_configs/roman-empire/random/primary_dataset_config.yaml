@@ -1,0 +1,7 @@
+dataset_name: roman-empire
+num_classes: 18
+num_features: 300
+prepare_config: null
+process_config: null
+split_config:
+  type: random-primary

@@ -1,0 +1,7 @@
+dataset_name: amazon-photo
+num_classes: 8
+num_features: 745
+prepare_config: null
+process_config: null
+split_config:
+  type: random-primary
