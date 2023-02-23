@@ -2,7 +2,14 @@
 
 This repository provides an official implementation of experimental framework for the paper:
 
-[Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://openreview.net/forum?id=DKpQxerf8q)
+<!-- [Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://openreview.net/forum?id=DKpQxerf8q) -->
+[Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://arxiv.org/abs/2302.13875v1)
+
+## Overview
+
+To evaluate the performance of graph models, it is important to test them on diverse and meaningful distributional shifts. However, most graph benchmarks that consider distributional shifts for node-level problems focus mainly on node features, while data in graph problems is primarily defined by its structural properties. In this work, we propose a general approach for inducing diverse distributional shifts based on graph structure.
+
+<img src="demo.jpeg">
 
 ## Installation
 
