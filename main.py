@@ -1,8 +1,8 @@
 import argparse
 import warnings
 
-from fantasy.utils import general, config
-from fantasy import experiment
+from source.utils import general, config
+from source import experiment
 
 
 if __name__ == '__main__':

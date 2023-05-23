@@ -1,5 +1,0 @@
-class_name: stochastic
-
-batch_size: 64
-device:
-num_workers: 0

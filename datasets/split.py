@@ -15,9 +15,7 @@ if __name__ == '__main__':
 
     options = parser.parse_args()
     split_config = utils.prepare_split_config(options.split_config_path)
+    part_ratios = utils.prepare_part_ratios(split_config)
+    graph_dgl = utils.prepare_graph(split_config)
 
-    graph_dgl = utils.prepare_dgl_graph(split_config)
-    graph_gt = utils.prepare_graphtool_graph(graph_dgl)
-
-    split_params = utils.prepare_split_params(split_config)
-    split_masks, property_values = utils.prepare_split_masks(graph_gt, split_params, split_config)
+    split_masks, property_values = utils.prepare_split(graph_dgl, part_ratios, split_config)

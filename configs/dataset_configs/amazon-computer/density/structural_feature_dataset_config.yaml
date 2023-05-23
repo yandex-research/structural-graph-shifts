@@ -1,0 +1,9 @@
+dataset_name: amazon-computer
+num_classes: 10
+num_node_features: 767
+prepare_config: {}
+process_config:
+  structural_feature_name: triangle
+split_config:
+  type: density
+num_structural_features: 10

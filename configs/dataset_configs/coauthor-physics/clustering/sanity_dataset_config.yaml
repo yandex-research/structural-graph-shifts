@@ -1,7 +1,0 @@
-dataset_name: coauthor-physics
-num_classes: 5
-num_features: 8415
-prepare_config: null
-process_config: null
-split_config:
-  type: clustering-sanity

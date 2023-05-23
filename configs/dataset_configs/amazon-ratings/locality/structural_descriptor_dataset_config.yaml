@@ -1,0 +1,9 @@
+dataset_name: amazon-ratings
+num_classes: 5
+num_node_features: 300
+prepare_config: {}
+process_config:
+  structural_feature_name: descriptor
+split_config:
+  type: locality
+num_structural_features: 70

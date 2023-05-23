@@ -1,0 +1,8 @@
+dataset_name: cora-ml
+num_classes: 7
+num_node_features: 2879
+prepare_config: {}
+process_config: {}
+split_config:
+  type: density
+num_structural_features: null

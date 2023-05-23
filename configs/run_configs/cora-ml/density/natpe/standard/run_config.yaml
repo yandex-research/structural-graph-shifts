@@ -1,0 +1,8 @@
+name: cora-ml/density/natpe/standard
+root: ./configs
+dataset: dataset_configs/cora-ml/density/standard_dataset_config.yaml
+sampler: sampler_configs/none_sampler_config.yaml
+datamodule: datamodule_configs/standard_datamodule_config.yaml
+method: method_configs/natpe/standard_method_config.yaml
+trainer: trainer_configs/standard_trainer_config.yaml
+experiment: experiment_configs/natpe/experiment_config.yaml

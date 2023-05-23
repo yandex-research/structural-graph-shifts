@@ -1,7 +1,0 @@
-dataset_name: questions
-num_classes: 2
-num_features: 301
-prepare_config:
-process_config:
-split_config:
-  type: random-sanity

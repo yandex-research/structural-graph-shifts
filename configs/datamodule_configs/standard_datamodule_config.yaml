@@ -2,4 +2,4 @@ class_name: default
 
 batch_size:
 device:
-num_workers: 0
+num_workers: 32

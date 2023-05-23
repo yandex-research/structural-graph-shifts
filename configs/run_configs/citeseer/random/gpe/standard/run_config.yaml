@@ -1,0 +1,8 @@
+name: citeseer/random/gpe/standard
+root: ./configs
+dataset: dataset_configs/citeseer/random/standard_dataset_config.yaml
+sampler: sampler_configs/none_sampler_config.yaml
+datamodule: datamodule_configs/standard_datamodule_config.yaml
+method: method_configs/gpe/standard_method_config.yaml
+trainer: trainer_configs/standard_trainer_config.yaml
+experiment: experiment_configs/gpe/experiment_config.yaml

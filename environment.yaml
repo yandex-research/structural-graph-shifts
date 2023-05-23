@@ -1,4 +1,4 @@
-name: fantasy
+name: source
 channels:
   - pytorch
   - pyg

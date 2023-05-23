@@ -1,14 +1,12 @@
 data_root: ../datasets
 config_root: ../configs
 
-dataset_name: pubmed
-strategy_name: clustering
-version_name: extra
+dataset_name: amazon-computer
+property_name: popularity
 save: True
-
-in_size: 0.5
-out_size: 0.5
 
 in_train_size: 0.3
 in_valid_size: 0.1
+in_test_size: 0.1
 out_valid_size: 0.1
+out_test_size: 0.4

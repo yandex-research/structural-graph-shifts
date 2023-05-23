@@ -1,4 +1,4 @@
-do_train: False
+do_train: True
 train_stage:
   stage_name: train
 

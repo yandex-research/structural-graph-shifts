@@ -1,8 +1,0 @@
-name: amazon-photo/personalised/natgpn/sanity
-root: ./configs
-dataset: dataset_configs/amazon-photo/personalised/sanity_dataset_config.yaml
-sampler: sampler_configs/none_sampler_config.yaml
-datamodule: datamodule_configs/standard_datamodule_config.yaml
-method: method_configs/natgpn/sanity_method_config.yaml
-trainer: trainer_configs/alpha_trainer_config.yaml
-experiment: experiment_configs/natgpn/experiment_config.yaml

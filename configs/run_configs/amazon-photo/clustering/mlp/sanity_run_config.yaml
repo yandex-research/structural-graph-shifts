@@ -1,8 +1,0 @@
-name: amazon-photo/clustering/mlp/sanity
-root: ./configs
-dataset: dataset_configs/amazon-photo/clustering/sanity_dataset_config.yaml
-sampler: sampler_configs/none_sampler_config.yaml
-datamodule: datamodule_configs/standard_datamodule_config.yaml
-method: method_configs/mlp/sanity_method_config.yaml
-trainer: trainer_configs/alpha_trainer_config.yaml
-experiment: experiment_configs/mlp/experiment_config.yaml

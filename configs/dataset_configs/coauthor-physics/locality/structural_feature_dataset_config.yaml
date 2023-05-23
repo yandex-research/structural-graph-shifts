@@ -1,0 +1,9 @@
+dataset_name: coauthor-physics
+num_classes: 5
+num_node_features: 8415
+prepare_config: {}
+process_config:
+  structural_feature_name: distance
+split_config:
+  type: locality
+num_structural_features: 50

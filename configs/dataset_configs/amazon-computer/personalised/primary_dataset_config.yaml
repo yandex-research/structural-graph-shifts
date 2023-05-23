@@ -1,7 +1,0 @@
-dataset_name: amazon-computer
-num_classes: 10
-num_features: 767
-prepare_config: null
-process_config: null
-split_config:
-  type: personalised-primary
