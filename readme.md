@@ -1,14 +1,16 @@
 # Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts
 
-This repository provides an official implementation of experimental framework for the paper:
-
-**Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts**
+This repository provides an official implementation of experimental framework for the paper [Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://arxiv.org/abs/2302.13875)
 
 ## Overview
 
 To evaluate the performance of graph models, it is important to test them on diverse and meaningful distributional shifts. However, most graph benchmarks that consider distributional shifts for node-level problems focus mainly on node features, while data in graph problems is primarily defined by its structural properties. In this work, we propose a general approach for inducing diverse distributional shifts based on graph structure.
 
-<!-- <img src="demo.jpeg"> -->
+<img src="demo.jpeg">
+
+## Implementation of Structural Shifts in Graph ML Frameworks
+
+Our approach to create data splits with structural distributional shifts can be accessed in DGL via [`dgl.data.add_node_property_split`](https://docs.dgl.ai/generated/dgl.data.utils.add_node_property_split.html) and in PyG via [`torch_geometric.transforms.NodePropertySplit`](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.transforms.NodePropertySplit.html).
 
 ## Installation
 
