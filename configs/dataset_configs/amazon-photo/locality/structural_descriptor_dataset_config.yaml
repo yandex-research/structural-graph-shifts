@@ -1,9 +1,0 @@
-dataset_name: amazon-photo
-num_classes: 8
-num_node_features: 745
-prepare_config: {}
-process_config:
-  structural_feature_name: descriptor
-split_config:
-  type: locality
-num_structural_features: 70

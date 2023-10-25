@@ -1,0 +1,7 @@
+name: ogbn-products/locality/gpe/improved
+root: ./configs
+dataset: dataset_configs/ogbn-products/locality/standard_dataset_config.yaml
+datamodule: datamodule_configs/standard_datamodule_config.yaml
+method: method_configs/gpe/improved_method_config.yaml
+trainer: trainer_configs/standard_trainer_config.yaml
+experiment: experiment_configs/gpe/experiment_config.yaml

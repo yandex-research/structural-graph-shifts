@@ -1,5 +1,0 @@
-class_name: structural
-
-batch_size:
-device:
-num_workers: 32

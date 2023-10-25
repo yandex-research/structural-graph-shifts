@@ -1,9 +1,0 @@
-dataset_name: coauthor-physics
-num_classes: 5
-num_node_features: 8415
-prepare_config: {}
-process_config:
-  structural_feature_name: degree
-split_config:
-  type: popularity
-num_structural_features: 10

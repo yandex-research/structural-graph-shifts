@@ -87,11 +87,11 @@ def prepare_split(graph_dgl, part_ratios, split_config, ascending=True):
 
     compute_property_fn = _property_name_to_compute_fn[split_config.property_name]
     property_values = compute_property_fn(graph_nx, ascending)
-
     node_masks = mask_nodes_by_property(property_values, part_ratios)
-    node_masks_path = f'{split_config.data_root}/{split_config.dataset_name}/splits/{split_config.property_name}-bruh.pth'
-    property_values_path = f'{split_config.data_root}/{split_config.dataset_name}/splits/{split_config.property_name}-bruh-values.npy'
     
+    node_masks_path = f'{split_config.data_root}/{split_config.dataset_name}/splits/{split_config.property_name}.pth'
+    property_values_path = f'{split_config.data_root}/{split_config.dataset_name}/splits/{split_config.property_name}-values.npy'
+
     if split_config.save:
         torch.save(node_masks, node_masks_path)
         np.save(property_values_path, property_values)

@@ -5,4 +5,3 @@ prepare_config: {}
 process_config: {}
 split_config:
   type: popularity
-num_structural_features: null

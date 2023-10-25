@@ -1,10 +1,8 @@
 data_root: ../datasets
 config_root: ../configs
-
 dataset_name: amazon-computer
 property_name: popularity
 save: True
-
 in_train_size: 0.3
 in_valid_size: 0.1
 in_test_size: 0.1

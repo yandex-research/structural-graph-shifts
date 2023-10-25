@@ -1,9 +1,0 @@
-dataset_name: coauthor-cs
-num_classes: 15
-num_node_features: 6805
-prepare_config: {}
-process_config:
-  structural_feature_name: triangle
-split_config:
-  type: density
-num_structural_features: 10

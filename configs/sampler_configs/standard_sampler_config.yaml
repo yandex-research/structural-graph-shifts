@@ -1,6 +1,0 @@
-class_name: standard
-
-num_layers:
-
-fanouts:
-replace: False

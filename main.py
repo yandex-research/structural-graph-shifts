@@ -18,15 +18,13 @@ if __name__ == '__main__':
     options = parser.parse_args()
     run_config = config.prepare_run_config(config.read_config(options.run_config_path))
 
-    dataset_config, sampler_config, datamodule_config, method_config, trainer_config, experiment_config = config.process_run_config(run_config)
+    dataset_config, datamodule_config, method_config, trainer_config, experiment_config = config.process_run_config(run_config)
     stage_name_to_config = config.prepare_stage_configs(experiment_config)
 
     if experiment_config.do_train:
         stage_config = stage_name_to_config['train']
         general_config = config.sync_configs_before_experiment(
             dataset_config.clone(), 
-            
-            sampler_config.clone(), 
             datamodule_config.clone(), 
             
             method_config.clone(), 
@@ -42,8 +40,6 @@ if __name__ == '__main__':
         stage_config = stage_name_to_config['infer']
         general_config = config.sync_configs_before_experiment(
             dataset_config.clone(), 
-            
-            sampler_config.clone(), 
             datamodule_config.clone(), 
             
             method_config.clone(), 

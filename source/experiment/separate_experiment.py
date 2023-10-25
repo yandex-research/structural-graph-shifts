@@ -1,7 +1,6 @@
 from source.utils import general, config
 
 from source.data.dataset import get_dataset_class
-from source.data.sampler import get_sampler_class
 from source.data.datamodule import get_datamodule_class
 from source.modules import get_module_class
 
@@ -9,10 +8,8 @@ from source import experiment
 
 
 class SeparateExperiment:
-    def __init__(self, dataset_config, sampler_config, datamodule_config, method_config, trainer_config, stage_config):
+    def __init__(self, dataset_config, datamodule_config, method_config, trainer_config, stage_config):
         self.dataset_config = dataset_config
-        
-        self.sampler_config = sampler_config
         self.datamodule_config = datamodule_config
         
         self.routine_name_to_module_pairs = config.prepare_module_configs(method_config)
@@ -25,8 +22,6 @@ class SeparateExperiment:
 
         # after random state is fixed, setup everything
         self.setup_dataset()
-        
-        self.setup_sampler()
         self.setup_datamodule()
 
         self.setup_modules()
@@ -42,13 +37,9 @@ class SeparateExperiment:
         
         self.dataset = dataset
 
-    def setup_sampler(self):
-        sampler_class = get_sampler_class(self.sampler_config.class_name)
-        self.sampler = None if sampler_class is None else sampler_class(self.sampler_config.clone())
-
     def setup_datamodule(self):
         datamodule_class = get_datamodule_class(self.datamodule_config.class_name)
-        self.datamodule = datamodule_class(self.dataset, self.sampler, self.datamodule_config.clone())
+        self.datamodule = datamodule_class(self.dataset, self.datamodule_config.clone())
 
     def setup_modules(self):
         self.routine_name_to_module_instances = {}

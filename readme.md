@@ -1,6 +1,6 @@
 # Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts
 
-This repository provides an official implementation of experimental framework for the paper [Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://arxiv.org/abs/2302.13875)
+This repository provides an official implementation of experimental framework for the paper [Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts](https://arxiv.org/abs/2302.13875) (NeurIPS 2023)
 
 ## Overview
 

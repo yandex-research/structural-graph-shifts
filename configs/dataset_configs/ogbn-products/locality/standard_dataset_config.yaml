@@ -1,0 +1,7 @@
+dataset_name: ogbn-products
+num_classes: 47
+num_node_features: 100
+prepare_config: {}
+process_config: {}
+split_config:
+  type: locality

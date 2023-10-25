@@ -3,10 +3,8 @@ from source.utils import general, config
 
 
 class GeneralExperiment:
-    def __init__(self, dataset_config, sampler_config, datamodule_config, method_config, trainer_config, stage_config):
+    def __init__(self, dataset_config, datamodule_config, method_config, trainer_config, stage_config):
         self.dataset_config = dataset_config
-        
-        self.sampler_config = sampler_config
         self.datamodule_config = datamodule_config
         
         self.method_config = method_config
@@ -34,8 +32,6 @@ class GeneralExperiment:
             for init_no in self.init_nos:
                 separate_config = config.sync_configs_during_experiment(
                     self.dataset_config.clone(), 
-                    
-                    self.sampler_config.clone(), 
                     self.datamodule_config.clone(), 
                     
                     self.method_config.clone(), 

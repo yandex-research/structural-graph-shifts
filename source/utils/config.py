@@ -21,7 +21,6 @@ class DatasetConfiguration(BaseConfig):
     dataset_name: str = None
     
     num_node_features: int = None
-    num_structural_features: int = None
     num_classes: int = None
 
     split_mode: str = 'random'
@@ -36,21 +35,8 @@ class DatasetConfiguration(BaseConfig):
 
 
 @dataclass
-class SamplerConfiguration(BaseConfig):
-    class_name: str = 'none'
-
-    # used only when class_name = 'full_neighbor' 
-    num_layers: int = None          # sync with module config
-    
-    # used only when class_name = ...
-    fanouts: list = None
-    replace: bool = False
-    # ...
-
-
-@dataclass
 class DatamoduleConfiguration(BaseConfig):
-    class_name: str = 'stochastic'
+    class_name: str = 'default'
 
     batch_size: int = 64
     device: str = None              # sync with trainer config
@@ -60,7 +46,6 @@ class DatamoduleConfiguration(BaseConfig):
 @dataclass
 class ModuleConfiguration(BaseConfig):
     num_node_features: int = None           # sync with method config
-    num_structural_features: int = None     # sync with method config
     num_classes: int = None                 # sync with method config
     num_convolutions: int = None            # sync with method config
 
@@ -76,13 +61,13 @@ class ModuleConfiguration(BaseConfig):
     metrics_config: dict = None
     loss_config: dict = None
     
-    abstract_config: dict = None    # some other configs that are specific for each module (base module class for ensembles, etc.)
+    abstract_config: dict = None    
+    # some other configs that are specific for each module (base module class for ensembles, etc.)
 
 
 @dataclass
 class MethodConfiguration(BaseConfig):
     num_node_features: int = None           # sync with dataset config
-    num_structural_features: int = None     # sync with dataset config
     num_classes: int = None                 # sync with dataset config
     num_convolutions: int = None
 
@@ -91,13 +76,6 @@ class MethodConfiguration(BaseConfig):
 
     train_routine: dict = None
     infer_routine: dict = None
-
-    # warmup_module_config: dict = None
-    # train_module_config: dict = None
-    # finetune_module_config: dict = None
-    
-    # eval_module_config: dict = None
-    # infer_module_config: dict = None
 
 
 @dataclass
@@ -156,7 +134,7 @@ def pprint_config(config):
 
 
 def prepare_run_config(run_config):
-    for config_name in ['dataset', 'sampler', 'datamodule', 'method', 'trainer', 'experiment']:
+    for config_name in ['dataset', 'datamodule', 'method', 'trainer', 'experiment']:
         run_config[config_name] = f"{run_config['root']}/{run_config[config_name]}"
     
     return run_config
@@ -164,8 +142,6 @@ def prepare_run_config(run_config):
 
 def process_run_config(run_config):
     dataset_config = DatasetConfiguration(**read_config(run_config['dataset']))
-
-    sampler_config = SamplerConfiguration(**read_config(run_config['sampler']))
     datamodule_config = DatamoduleConfiguration(**read_config(run_config['datamodule']))
     
     method_config = MethodConfiguration(**read_config(run_config['method']))
@@ -174,22 +150,20 @@ def process_run_config(run_config):
     experiment_config = ExperimentConfiguration(**read_config(run_config['experiment']))
     experiment_config.experiment_name = run_config['name']
 
-    return dataset_config, sampler_config, datamodule_config, method_config, trainer_config, experiment_config
+    return dataset_config, datamodule_config, method_config, trainer_config, experiment_config
 
 
-def sync_configs_before_experiment(dataset_config, sampler_config, datamodule_config, method_config, trainer_config, experiment_config):
-    sampler_config.num_layers = method_config.num_convolutions
+def sync_configs_before_experiment(dataset_config, datamodule_config, method_config, trainer_config, experiment_config):
     datamodule_config.device = f"cuda:{trainer_config.gpu_index}"
 
     method_config.num_node_features = dataset_config.num_node_features
-    method_config.num_structural_features = dataset_config.num_structural_features
     method_config.num_classes = dataset_config.num_classes
     method_config.device = f"cuda:{trainer_config.gpu_index}"
 
     trainer_config.default_dir = f"{experiment_config.experiment_root}/{experiment_config.experiment_name}"
     trainer_config.enable_logging = (experiment_config.experiment_name == 'train')
 
-    return dataset_config, sampler_config, datamodule_config, method_config, trainer_config, experiment_config
+    return dataset_config, datamodule_config, method_config, trainer_config, experiment_config
 
 
 def prepare_stage_configs(experiment_config):
@@ -207,7 +181,6 @@ def prepare_stage_configs(experiment_config):
 
 def impute_method_config(module_config, method_config):
     module_config.num_node_features = method_config.num_node_features
-    module_config.num_structural_features = method_config.num_structural_features
     module_config.num_classes = method_config.num_classes
     module_config.num_convolutions = method_config.num_convolutions
             
@@ -249,7 +222,7 @@ def prepare_module_configs(method_config):
     return {'train': train_module_configs, 'infer': infer_module_configs}
 
     
-def sync_configs_during_experiment(dataset_config, sampler_config, datamodule_config, method_config, trainer_config, stage_config, split_no, init_no):
+def sync_configs_during_experiment(dataset_config, datamodule_config, method_config, trainer_config, stage_config, split_no, init_no):
     dataset_config.split_no = split_no
     method_config.init_no = init_no
 
@@ -259,4 +232,4 @@ def sync_configs_during_experiment(dataset_config, sampler_config, datamodule_co
 
     trainer_config.default_dir = f"{stage_config.experiment_root}/{stage_config.experiment_name}/split_{stage_config.split_no}/init_{stage_config.init_no}"
 
-    return dataset_config, sampler_config, datamodule_config, method_config, trainer_config, stage_config
+    return dataset_config, datamodule_config, method_config, trainer_config, stage_config
